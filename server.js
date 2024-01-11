@@ -17,7 +17,6 @@ const Stripe = stripe(process.env.STRIPE_SECRET_KEY, {
 
 // allowing cors
 app.use(cors());
-
 const httpServer = require("http").createServer(app);
 const PORT = "7000";
 
