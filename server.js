@@ -8,7 +8,6 @@ app.use(express.urlencoded({ limit: "50mb", extended: true })); // for parsing a
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-const crypto = require("crypto");
 
 const jwt = require("jsonwebtoken");
 
@@ -57,7 +56,7 @@ app.post("/pay", async (req, res) => {
           price_data: {
             currency: "usd",
             product_data: {
-              name: "Product Name", // Replace with your product name
+              name: "ADHD/ADD Test Result Information", // Replace with your product name
             },
             unit_amount: 700, // Amount in cents (7 USD)
           },
@@ -65,8 +64,8 @@ app.post("/pay", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/success/" + token, // Replace with your success URL
-      cancel_url: "http://localhost:3000/cancel/" + token, // Replace with your cancel URL
+      success_url: "http://test.adhdwell.com/success/" + token, // Replace with your success URL
+      cancel_url: "http://test.adhdwell.com/cancel/" + token, // Replace with your cancel URL
       billing_address_collection: "auto",
       customer_email: email,
     });
