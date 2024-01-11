@@ -85,10 +85,12 @@ app.post("/send-email", async (req, res) => {
 
   // Create a transporter using SMTP for GoDaddy Workspace Email
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtpout.secureserver.net', // GoDaddy's SMTP server
+    port: 465, // Port for secure (SSL/TLS) connections
+    secure: true,
     auth: {
-      user: "cjfrancisf@gmail.com", // Your GoDaddy email address
-      pass: "zzyxclvndoeagvmt", // Your GoDaddy email password
+      user: "help@adhdwell.com", // Your GoDaddy email address
+      pass: "mmorris5100", // Your GoDaddy email password zzyxclvndoeagvmt
     },
   });
 
@@ -99,28 +101,28 @@ app.post("/send-email", async (req, res) => {
   if (score >= 0 && score <= 25) {
     console.log('hi')
     mailOptions = {
-      from: "cjfrancisf@gmail.com", // Sender address
+      from: "help@adhdwell.com", // Sender address
       to: email, // List of recipients
       subject: "Mild ADHD/ADD PDF",
       text: "some information : https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk ",
     };
   } else if (score >= 26 && score <= 50) {
     mailOptions = {
-      from: "cjfrancisf@gmail.com", // Sender address
+      from: "help@adhdwell.com", // Sender address
       to: email, // List of recipients
       subject: "Mild ADHD/ADD PDF",
       text: "some information : https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk ",
     };
   } else if (score >= 51 && score <= 75) {
     mailOptions = {
-      from: "cjfrancisf@gmail.com", // Sender address
+      from: "help@adhdwell.com", // Sender address
       to: email, // List of recipients
       subject: "Moderate ADHD/ADD PDF",
       text: "some information : https://drive.google.com/file/d/1LewGFMfFmnsIQlRCq8ARInCPjP_rZWAJ/view?usp=drivesd ",
     };
   } else if (score >= 76 && score <= 100) {
     mailOptions = {
-      from: "cjfrancisf@gmail.com", // Sender address
+      from: "help@adhdwell.com", // Sender address
       to: email, // List of recipients
       subject: "Severe ADHD/ADD PDF",
       text: "some information : https://drive.google.com/file/d/1s0LkMfuNdDfOH5WeG9ToNQeRPl39hORX/view?usp=drivesdk ",
