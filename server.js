@@ -82,7 +82,7 @@ app.post("/send-email", async (req, res) => {
   const email = req.body.email;
   const score = req.body.score;
   const first_name = req.body.first_name
-  console.log(email);
+  console.log(first_name);
 
   // Create a transporter using SMTP for GoDaddy Workspace Email
   const transporter = nodemailer.createTransport({
