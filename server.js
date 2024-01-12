@@ -89,8 +89,8 @@ app.post("/send-email", async (req, res) => {
     port: 465, // Port for secure (SSL/TLS) connections
     secure: true,
     auth: {
-      user: "help@adhdwell.com", // Your GoDaddy email address
-      pass: "mmorris5100", // Your GoDaddy email password zzyxclvndoeagvmt
+      user: process.env.EMAIL, // Your GoDaddy email address
+      pass: process.env.PASS, // Your GoDaddy email password zzyxclvndoeagvmt
     },
   });
 
