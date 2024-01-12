@@ -79,117 +79,124 @@ app.post("/pay", async (req, res) => {
 
 //send email
 app.post("/send-email", async (req, res) => {
-  const email = req.body.email;
-  const score = req.body.score;
-  const first_name = req.body.first_name
-  console.log(first_name);
-
-  // Create a transporter using SMTP for GoDaddy Workspace Email
-  const transporter = nodemailer.createTransport({
-    host: 'smtpout.secureserver.net', // GoDaddy's SMTP server
-    port: 465, // Port for secure (SSL/TLS) connections
-    secure: true,
-    auth: {
-      user: process.env.EMAIL, // Your GoDaddy email address
-      pass: process.env.PASS, // Your GoDaddy email password zzyxclvndoeagvmt
-    },
-  });
-
-  // Email options
-
-  let mailOptions;
-
-  if (score >= 0 && score <= 25) {
-    console.log('hi')
-    mailOptions = {
-      from: "help@adhdwell.com", // Sender address
-      to: email, // List of recipients
-      subject: "Mild ADHD/ADD PDF",
-      text: `
-      Hi ${first_name},
-      
-      We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
-      
-      Attached is your full report.
-      
-      Stay tuned for more insights and resources specially tailored for you.
-      
-      Warm regards,
-      
-      The ADHD Well Team
-      https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk 
-      `,
-    };
-  } else if (score >= 26 && score <= 50) {
-    mailOptions = {
-      from: "help@adhdwell.com", // Sender address
-      to: email, // List of recipients
-      subject: "Mild ADHD/ADD PDF",
-      text: `
-      Hi ${first_name},
-      
-      We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
-      
-      Attached is your full report.
-      
-      Stay tuned for more insights and resources specially tailored for you.
-      
-      Warm regards,
-      
-      The ADHD Well Team
-      https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk
-      `,
-    };
-  } else if (score >= 51 && score <= 75) {
-    mailOptions = {
-      from: "help@adhdwell.com", // Sender address
-      to: email, // List of recipients
-      subject: "Moderate ADHD/ADD PDF",
-      text: `
-      Hi ${first_name},
-      
-      We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
-      
-      Attached is your full report.
-      
-      Stay tuned for more insights and resources specially tailored for you.
-      
-      Warm regards,
-      
-      The ADHD Well Team
-      https://drive.google.com/file/d/1LewGFMfFmnsIQlRCq8ARInCPjP_rZWAJ/view?usp=drivesd 
-      `,
-    };
-  } else if (score >= 76 && score <= 100) {
-    mailOptions = {
-      from: "help@adhdwell.com", // Sender address
-      to: email, // List of recipients
-      subject: "Severe ADHD/ADD PDF",
-      text: `
-      Hi ${first_name},
-      
-      We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
-      
-      Attached is your full report.
-      
-      Stay tuned for more insights and resources specially tailored for you.
-      
-      Warm regards,
-      
-      The ADHD Well Team
-      https://drive.google.com/file/d/1s0LkMfuNdDfOH5WeG9ToNQeRPl39hORX/view?usp=drivesdk
-      `,
-    };
-  }
-
-  // Send email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
+ try {
+    const email = req.body.email;
+    const score = req.body.score;
+    const first_name = req.body.first_name
+    console.log(first_name);
+  
+    // Create a transporter using SMTP for GoDaddy Workspace Email
+    const transporter = nodemailer.createTransport({
+      host: 'smtpout.secureserver.net', // GoDaddy's SMTP server
+      port: 465, // Port for secure (SSL/TLS) connections
+      secure: true,
+      auth: {
+        user: process.env.EMAIL, // Your GoDaddy email address
+        pass: process.env.PASS, // Your GoDaddy email password zzyxclvndoeagvmt
+      }, 
+    });
+  
+    // Email options
+  
+    let mailOptions;
+  
+    if (score >= 0 && score <= 25) {
+      console.log('hi')
+      mailOptions = {
+        from: "help@adhdwell.com", // Sender address
+        to: email, // List of recipients
+        subject: "Mild ADHD/ADD PDF",
+        text: `
+        Hi ${first_name},
+        
+        We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
+        
+        Attached is your full report.
+        
+        Stay tuned for more insights and resources specially tailored for you.
+        
+        Warm regards,
+        
+        The ADHD Well Team
+        https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk 
+        `,
+      };
+    } else if (score >= 26 && score <= 50) {
+      mailOptions = {
+        from: "help@adhdwell.com", // Sender address
+        to: email, // List of recipients
+        subject: "Mild ADHD/ADD PDF",
+        text: `
+        Hi ${first_name},
+        
+        We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
+        
+        Attached is your full report.
+        
+        Stay tuned for more insights and resources specially tailored for you.
+        
+        Warm regards,
+        
+        The ADHD Well Team
+        https://drive.google.com/file/d/11VPDtcAjzjgdtgQAha-M7NEBpQdV6jZ8/view?usp=drivesdk
+        `,
+      };
+    } else if (score >= 51 && score <= 75) {
+      mailOptions = {
+        from: "help@adhdwell.com", // Sender address
+        to: email, // List of recipients
+        subject: "Moderate ADHD/ADD PDF",
+        text: `
+        Hi ${first_name},
+        
+        We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
+        
+        Attached is your full report.
+        
+        Stay tuned for more insights and resources specially tailored for you.
+        
+        Warm regards,
+        
+        The ADHD Well Team
+        https://drive.google.com/file/d/1LewGFMfFmnsIQlRCq8ARInCPjP_rZWAJ/view?usp=drivesd 
+        `,
+      };
+    } else if (score >= 76 && score <= 100) {
+      mailOptions = {
+        from: "help@adhdwell.com", // Sender address
+        to: email, // List of recipients
+        subject: "Severe ADHD/ADD PDF",
+        text: `
+        Hi ${first_name},
+        
+        We want to extend a heartfelt thank you for taking the time to complete the ADHD test—awareness is the first step towards positive change.
+        
+        Attached is your full report.
+        
+        Stay tuned for more insights and resources specially tailored for you.
+        
+        Warm regards,
+        
+        The ADHD Well Team
+        https://drive.google.com/file/d/1s0LkMfuNdDfOH5WeG9ToNQeRPl39hORX/view?usp=drivesdk
+        `,
+      };
     }
-  });
+  
+    // Send email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+  
+    return res.json({ msg: "email sent" });
+ } catch (error) {
 
-  return res.json({ msg: "email sent" });
+
+    return res.json({ msg: "email not sent", error });
+    
+ }
 });
